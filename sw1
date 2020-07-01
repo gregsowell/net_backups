@@ -1,0 +1,179 @@
+Building configuration...
+
+Current configuration : 4320 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Swi1
+!
+enable secret 5 $1$Vz67$wo2kG9xRf7Lg.tKpSA6qe0
+!
+username admin privilege 15 password 0 lab
+no aaa new-model
+ip subnet-zero
+ip domain-name whatever.com
+!
+!
+!
+crypto pki trustpoint TP-self-signed-673279360
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-673279360
+ revocation-check none
+ rsakeypair TP-self-signed-673279360
+!
+!
+crypto pki certificate chain TP-self-signed-673279360
+ certificate self-signed 01
+  30820247 308201B0 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 36373332 37393336 30301E17 0D393330 33303130 30303130 
+  305A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3637 33323739 
+  33363030 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100 
+  B120A937 8299A132 67D3D494 B7DE8D4E F5BE4DFA 4F8F73E2 42699B66 EC53B5CC 
+  26290156 BEACE8B8 C7689EC5 84B2887A E830B371 871AED9E C7B2022E D10BF8B9 
+  E2E5E850 D5157819 FBE2A2FD 675A81CE E1CED2FD E026FDD1 D51AE2AF B60FCB5E 
+  2E1CEFA1 29B4B1CA 0EDBD77E 5501F1A0 257AD15A 81AC1B3D 3FA233A5 0F257945 
+  02030100 01A37130 6F300F06 03551D13 0101FF04 05300301 01FF301C 0603551D 
+  11041530 13821153 7769312E 77686174 65766572 2E636F6D 301F0603 551D2304 
+  18301680 14AE4BBC 622AC231 E819067E 64AAAE48 B3424565 EB301D06 03551D0E 
+  04160414 AE4BBC62 2AC231E8 19067E64 AAAE48B3 424565EB 300D0609 2A864886 
+  F70D0101 04050003 818100A2 2BF037A9 B22B0A3A 5FD75E27 51A472FE C6F7E82D 
+  F8642048 C7AA0B06 E7F51851 7DFC66E5 1EB62248 D2B7ACC4 4EE78EE5 CFA74431 
+  D00CB7DF 7342466D F87CC5A6 567D5DC7 B6A075D5 C6A31213 E3D646ED 1678691D 
+  6EE158C5 913F953E 4B2F6013 FADB660F 2D77129D 61AAC08F 051FF57F DFC2B5DD 
+  1263AD65 72DB0BCF 81C2D5
+  quit
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+! 
+!
+!
+!
+interface FastEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode access
+!
+interface FastEthernet0/2
+ switchport access vlan 100
+ switchport mode access
+!
+interface FastEthernet0/3
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/4
+ switchport mode dynamic desirable
+ shutdown
+!
+interface FastEthernet0/5
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/6
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/7
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/8
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/9
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/10
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/11
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/12
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10
+ switchport mode trunk
+ spanning-tree cost 100000
+!
+interface FastEthernet0/13
+ switchport access vlan 10
+ switchport mode dot1q-tunnel
+ no cdp enable
+!
+interface FastEthernet0/14
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/15
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/16
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/17
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/18
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/19
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/20
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/21
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/22
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/23
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/24
+ description [oob]
+ switchport access vlan 100
+ switchport mode access
+!
+interface GigabitEthernet0/1
+ switchport mode dynamic desirable
+!
+interface GigabitEthernet0/2
+ switchport mode dynamic desirable
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan100
+ description [--poop--]
+ ip address 192.168.88.51 255.255.255.0
+!
+ip default-gateway 192.168.88.1
+ip classless
+ip http server
+ip http secure-server
+!
+!
+!
+control-plane
+!
+!
+line con 0
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login
+!
+end
