@@ -1,1 +1,101 @@
-[["## Last commit: 2020-07-02 18:39:31 UTC by ec2-user", "version 18.4R1.8;", "#junos-config", "groups {", "    aws-default {", "        system {", "            login {", "                user ec2-user {", "                    full-name juniper-aws-ec2-user;", "                    uid 100;", "                    class super-user;", "                    authentication {", "                        ssh-rsa \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCD2pk65XuISWEkMcG95A66A6MquFhUdMGSkl2VI0ZefX9H5VbsfWMi6YswxoU8eRx1Q7oskn/CndEZxydMk7+/Z3PJa1rIMGwDfoAflpP0pMdE0ePJb0SAPoJLYny/jkiJbEvOjmjUiOeUA/m67aGg56c60DrRe+2eInROKgGfZWljbWThj0AyKIeDdg3CeObA4yz5eK6StFqbRVQjfHfrTyhEfiHQqKlZDiYFGM1VwqN5btQwWO5fVB3ZMBcu6UjZe+G64Kc8/DMXRNwNPAOmiLr0ALBFR0TaWvgXiTIvCodVvK/JAeEt1LbDWz/byBwNx6W2BQrB0W6HyPEDCOOL GregNetworkWorkshop-key\"; ## SECRET-DATA", "                    }", "                }", "            }", "            root-authentication {", "                encrypted-password *disabled*; ## SECRET-DATA", "            }", "            services {", "                ssh;", "                netconf {", "                    ssh;", "                }", "                web-management {", "                    https {", "                        system-generated-certificate;", "                    }", "                }", "            }", "            license {", "                autoupdate {", "                    url https://ae1.juniper.net/junos/key_retrieval;", "                }", "            }", "        }", "        interfaces {", "            fxp0 {", "                unit 0 {", "                    family inet {", "                        dhcp;", "                    }", "                }", "            }", "        }", "    }", "}", "apply-groups aws-default;", "system {", "    login {", "        user backup-test {", "            uid 2000;", "            class super-user;", "            authentication {", "                encrypted-password \"$6$AbvjlOyh$I4iQ8tT8BenAHGD.HS27koH.mDi6gcvcOHy0QSWlNRD3zGOi8JGSUkGQfZHdV0NxodB/FW59NQPjmTwEIttao1\"; ## SECRET-DATA", "            }", "        }", "    }", "    root-authentication {", "        encrypted-password \"$6$H9LTGbVi$7ZWRmf/7WzOvcGP652EeM4vz7SMo0Z7BUyffkZjrBKw7IJRwruf/ef46JLlzb/NZro8D1Kfuw55GjI/wC042G0\"; ## SECRET-DATA", "    }", "    services {", "        ssh;", "        netconf {", "            ssh {", "                port 830;", "            }", "        }", "    }", "    host-name rtr3;", "}", "interfaces {", "    gr-0/0/0 {", "        unit 0 {", "            tunnel {", "                source 172.16.218.187;", "                destination 172.16.230.218;", "            }", "            family inet {", "                address 10.100.100.2/24;", "            }", "        }", "    }", "    lo0 {", "        unit 0 {", "            family inet {", "                address 192.168.3.3/32;", "            }", "        }", "    }", "}", "protocols {", "    ospf {", "        area 0.0.0.0 {", "            interface gr-0/0/0.0;", "            interface lo0.0 {", "                passive;", "            }", "        }", "    }", "}"]]
+## Last commit: 2020-07-02 18:39:31 UTC by ec2-user
+version 18.4R1.8;
+#junos-config
+groups {
+    aws-default {
+        system {
+            login {
+                user ec2-user {
+                    full-name juniper-aws-ec2-user;
+                    uid 100;
+                    class super-user;
+                    authentication {
+                        ssh-rsa "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCD2pk65XuISWEkMcG95A66A6MquFhUdMGSkl2VI0ZefX9H5VbsfWMi6YswxoU8eRx1Q7oskn/CndEZxydMk7+/Z3PJa1rIMGwDfoAflpP0pMdE0ePJb0SAPoJLYny/jkiJbEvOjmjUiOeUA/m67aGg56c60DrRe+2eInROKgGfZWljbWThj0AyKIeDdg3CeObA4yz5eK6StFqbRVQjfHfrTyhEfiHQqKlZDiYFGM1VwqN5btQwWO5fVB3ZMBcu6UjZe+G64Kc8/DMXRNwNPAOmiLr0ALBFR0TaWvgXiTIvCodVvK/JAeEt1LbDWz/byBwNx6W2BQrB0W6HyPEDCOOL GregNetworkWorkshop-key"; ## SECRET-DATA
+                    }
+                }
+            }
+            root-authentication {
+                encrypted-password *disabled*; ## SECRET-DATA
+            }
+            services {
+                ssh;
+                netconf {
+                    ssh;
+                }
+                web-management {
+                    https {
+                        system-generated-certificate;
+                    }
+                }
+            }
+            license {
+                autoupdate {
+                    url https://ae1.juniper.net/junos/key_retrieval;
+                }
+            }
+        }
+        interfaces {
+            fxp0 {
+                unit 0 {
+                    family inet {
+                        dhcp;
+                    }
+                }
+            }
+        }
+    }
+}
+apply-groups aws-default;
+system {
+    login {
+        user backup-test {
+            uid 2000;
+            class super-user;
+            authentication {
+                encrypted-password "$6$AbvjlOyh$I4iQ8tT8BenAHGD.HS27koH.mDi6gcvcOHy0QSWlNRD3zGOi8JGSUkGQfZHdV0NxodB/FW59NQPjmTwEIttao1"; ## SECRET-DATA
+            }
+        }
+    }
+    root-authentication {
+        encrypted-password "$6$H9LTGbVi$7ZWRmf/7WzOvcGP652EeM4vz7SMo0Z7BUyffkZjrBKw7IJRwruf/ef46JLlzb/NZro8D1Kfuw55GjI/wC042G0"; ## SECRET-DATA
+    }
+    services {
+        ssh;
+        netconf {
+            ssh {
+                port 830;
+            }
+        }
+    }
+    host-name rtr3;
+}
+interfaces {
+    gr-0/0/0 {
+        unit 0 {
+            tunnel {
+                source 172.16.218.187;
+                destination 172.16.230.218;
+            }
+            family inet {
+                address 10.100.100.2/24;
+            }
+        }
+    }
+    lo0 {
+        unit 0 {
+            family inet {
+                address 192.168.3.3/32;
+            }
+        }
+    }
+}
+protocols {
+    ospf {
+        area 0.0.0.0 {
+            interface gr-0/0/0.0;
+            interface lo0.0 {
+                passive;
+            }
+        }
+    }
+}
