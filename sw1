@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 4320 bytes
+Current configuration : 4339 bytes
 !
 version 12.2
 no service pad
@@ -78,6 +78,7 @@ interface FastEthernet0/4
  shutdown
 !
 interface FastEthernet0/5
+ description test1
  switchport mode dynamic desirable
 !
 interface FastEthernet0/6
