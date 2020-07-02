@@ -1,0 +1,71 @@
+! Command: show running-config
+! device: rtr2 (vEOS, EOS-4.22.1FX-VEOSRouter-cloud)
+!
+! boot system flash:vEOS-Router.swi
+!
+agent KernelFib environment KERNELFIB_PROGRAM_ALL_ECMP='true'
+!
+switchport default mode routed
+!
+transceiver qsfp default-mode 4x10G
+!
+hostname rtr2
+!
+spanning-tree mode mstp
+!
+aaa authentication policy on-success log
+aaa authentication policy on-failure log
+!
+no aaa root
+no username admin
+!
+username backup-test privilege 15 secret sha512 $6$FouF6VP1OuozX63i$r6bZ0gXIcqMOMwWQWJnMqErGcBlTnEDjeamPX5VD6Bb6Sx1QLKtVaOsjToJR/WGV0CbAHxDRNWdPbfrCuhU7I1
+username ec2-user nopassword
+username ec2-user ssh-key ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCD2pk65XuISWEkMcG95A66A6MquFhUdMGSkl2VI0ZefX9H5VbsfWMi6YswxoU8eRx1Q7oskn/CndEZxydMk7+/Z3PJa1rIMGwDfoAflpP0pMdE0ePJb0SAPoJLYny/jkiJbEvOjmjUiOeUA/m67aGg56c60DrRe+2eInROKgGfZWljbWThj0AyKIeDdg3CeObA4yz5eK6StFqbRVQjfHfrTyhEfiHQqKlZDiYFGM1VwqN5btQwWO5fVB3ZMBcu6UjZe+G64Kc8/DMXRNwNPAOmiLr0ALBFR0TaWvgXiTIvCodVvK/JAeEt1LbDWz/byBwNx6W2BQrB0W6HyPEDCOOL GregNetworkWorkshop-key
+!
+interface Ethernet1
+   no switchport
+   ip address dhcp
+   dhcp client accept default-route
+!
+interface Loopback0
+   ip address 192.168.2.2/32
+!
+interface Tunnel0
+   mtu 1394
+   ip address 10.101.101.2/24
+   ip ospf network point-to-point
+   ip ospf area 0.0.0.0
+   tunnel mode gre
+   tunnel source interface Ethernet1
+   tunnel destination 172.18.53.235
+   tunnel path-mtu-discovery
+   tunnel ttl 10
+!
+interface Tunnel1
+   ip address 10.200.200.2/24
+   tunnel source interface Ethernet1
+   tunnel destination 3.95.61.255
+!
+ip routing
+!
+router bgp 65001
+   router-id 192.168.2.2
+   neighbor 10.200.200.1 remote-as 65000
+   neighbor 10.200.200.1 ebgp-multihop
+   neighbor 10.200.200.1 maximum-routes 12000
+   redistribute ospf match external
+   !
+   address-family ipv4
+      neighbor 10.200.200.1 activate
+      network 10.101.101.0/24
+      network 10.200.200.0/24
+      network 172.18.0.0/16
+      network 192.168.2.2/32
+!
+router ospf 1
+   router-id 192.168.2.2
+   redistribute bgp
+   max-lsa 12000
+!
+end
