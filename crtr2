@@ -24,6 +24,7 @@ username ec2-user nopassword
 username ec2-user ssh-key ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCD2pk65XuISWEkMcG95A66A6MquFhUdMGSkl2VI0ZefX9H5VbsfWMi6YswxoU8eRx1Q7oskn/CndEZxydMk7+/Z3PJa1rIMGwDfoAflpP0pMdE0ePJb0SAPoJLYny/jkiJbEvOjmjUiOeUA/m67aGg56c60DrRe+2eInROKgGfZWljbWThj0AyKIeDdg3CeObA4yz5eK6StFqbRVQjfHfrTyhEfiHQqKlZDiYFGM1VwqN5btQwWO5fVB3ZMBcu6UjZe+G64Kc8/DMXRNwNPAOmiLr0ALBFR0TaWvgXiTIvCodVvK/JAeEt1LbDWz/byBwNx6W2BQrB0W6HyPEDCOOL GregNetworkWorkshop-key
 !
 interface Ethernet1
+   description [test1]
    no switchport
    ip address dhcp
    dhcp client accept default-route
