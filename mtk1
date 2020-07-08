@@ -1,0 +1,120 @@
+===system package print detail===
+Flags: X - disabled 
+ 0   name="routeros-smips" version="6.45.8" build-time=jan/23/2020 07:19:45 
+     scheduled="" 
+
+ 1   name="system" version="6.45.8" build-time=jan/23/2020 07:19:45 
+     scheduled="" bundle=routeros-smips 
+
+ 2   name="ipv6" version="6.45.8" build-time=jan/23/2020 07:19:45 scheduled="" 
+     bundle=routeros-smips 
+
+ 3   name="wireless" version="6.45.8" build-time=jan/23/2020 07:19:45 
+     scheduled="" bundle=routeros-smips 
+
+ 4   name="hotspot" version="6.45.8" build-time=jan/23/2020 07:19:45 
+     scheduled="" bundle=routeros-smips 
+
+ 5   name="mpls" version="6.45.8" build-time=jan/23/2020 07:19:45 scheduled="" 
+     bundle=routeros-smips 
+
+ 6   name="routing" version="6.45.8" build-time=jan/23/2020 07:19:45 
+     scheduled="" bundle=routeros-smips 
+
+ 7   name="ppp" version="6.45.8" build-time=jan/23/2020 07:19:45 scheduled="" 
+     bundle=routeros-smips 
+
+ 8   name="dhcp" version="6.45.8" build-time=jan/23/2020 07:19:45 scheduled="" 
+     bundle=routeros-smips 
+
+ 9   name="security" version="6.45.8" build-time=jan/23/2020 07:19:45 
+     scheduled="" bundle=routeros-smips 
+
+10   name="advanced-tools" version="6.45.8" build-time=jan/23/2020 07:19:45 
+     scheduled="" bundle=routeros-smips
+===system routerboard print===
+routerboard: yes
+             model: RouterBOARD 941-2nD
+     serial-number: 5C15042C2B0E
+     firmware-type: qca9531L
+  factory-firmware: 3.22
+  current-firmware: 6.45.8
+  upgrade-firmware: 6.45.8
+===system license print===
+software-id: 2M8F-R9MZ
+       nlevel: 4
+     features:
+===export configuration===
+# jul/08/2020 14:07:09 by RouterOS 6.45.8
+# software id = 2M8F-R9MZ
+#
+# model = RouterBOARD 941-2nD
+# serial number = 5C15042C2B0E
+/interface ethernet
+set [ find default-name=ether1 ] advertise=\
+    10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full
+set [ find default-name=ether2 ] advertise=\
+    10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full
+set [ find default-name=ether3 ] advertise=\
+    10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full
+set [ find default-name=ether4 ] advertise=\
+    10M-half,10M-full,100M-half,100M-full,1000M-half,1000M-full
+/interface wireless
+set [ find default-name=wlan1 ] antenna-gain=0 country=no_country_set \
+    frequency-mode=manual-txpower ssid=MikroTik
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+/ip pool
+add name=dhcp_pool0 ranges=192.168.10.20-192.168.10.254
+/ip dhcp-server
+add address-pool=dhcp_pool0 disabled=no interface=ether1 name=dhcp1
+/ipv6 dhcp-server
+add address-pool=pool1 disabled=yes interface=ether1 name=server1
+/ipv6 pool
+add name=pool1 prefix=2001::/60 prefix-length=62
+/ip address
+add address=192.168.10.1/24 interface=ether1 network=192.168.10.0
+/ip dhcp-client
+add dhcp-options=hostname,clientid disabled=no interface=ether4
+add interface=ether1
+/ip dhcp-server network
+add address=192.168.10.0/24 dns-server=8.8.8.8,4.2.2.2 gateway=192.168.10.1
+/ip firewall filter
+add action=accept chain=input
+add action=accept chain=forward dst-address=2.2.2.2
+add action=accept chain=forward disabled=yes src-address=1.1.1.1
+add action=accept chain=forward dst-port=80 protocol=tcp
+add action=accept chain=management
+add action=accept chain=management
+add action=accept chain=management
+add action=accept chain=management
+add action=accept chain=tacos disabled=yes
+add action=accept chain=tacos disabled=yes
+add action=accept chain=tacos disabled=yes
+/ip route
+add distance=1 gateway=192.168.0.1
+add distance=1 dst-address=192.168.50.0/24 gateway=192.168.88.1
+/ipv6 address
+add address=2001:0:0:1::2 interface=ether1
+/ipv6 route
+add distance=1 gateway=2001:0:0:1::1
+/system clock
+set time-zone-name=America/New_York
+/system identity
+set name=mtk1
+/system note
+set note="greg is awesome"
+/system ntp client
+set primary-ntp=1.1.1.1 secondary-ntp=2.2.2.2
+/system routerboard settings
+set auto-upgrade=yes
+/system scheduler
+add name=firm-upgrade on-event=firm-upgrade policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
+    start-date=feb/20/2020 start-time=16:59:59
+/system script
+add dont-require-permissions=no name=firm-upgrade owner=admin policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon source=\
+    "/system rou up; /system reboot"
+/tool romon
+set enabled=yes
