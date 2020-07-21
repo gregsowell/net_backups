@@ -1,0 +1,238 @@
+Building configuration...
+
+Current configuration : 5625 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname sw3
+!
+!
+username admin privilege 15 password 0 lab
+username backup privilege 15 secret 5 $1$mp0x$eJrxEGDNsEsi12IUuTqXV.
+no aaa new-model
+ip subnet-zero
+ip domain-name gregsowell.com
+!
+!
+!
+crypto pki trustpoint TP-self-signed-2327029504
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2327029504
+ revocation-check none
+ rsakeypair TP-self-signed-2327029504
+!
+!
+crypto pki certificate chain TP-self-signed-2327029504
+ certificate self-signed 01
+  3082024A 308201B3 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32333237 30323935 3034301E 170D3933 30333031 30303031 
+  31315A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 33323730 
+  32393530 3430819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100D6FD 046CE819 D6D65C0F 0FFEBE18 45CEA89D AA1F0888 52185B71 43AE3735 
+  A9DB2856 4B793393 B41D1B9F 1477AF89 489DA1EA 10BD857E 51B1A77C 7CBEF78E 
+  03C1D3F7 1EF97DD2 D7D2F6E4 834A6102 F30E8354 4DF50699 318E0696 5900CB73 
+  E7C44AE8 C0918758 A3D4B924 A3B2942D 0F6F3016 A21DA269 6F7C568F 53D9D52C 
+  774B0203 010001A3 72307030 0F060355 1D130101 FF040530 030101FF 301D0603 
+  551D1104 16301482 12737733 2E677265 67736F77 656C6C2E 636F6D30 1F060355 
+  1D230418 30168014 C66A2004 452B637B 428ACE98 F0C18CD3 0A625F4F 301D0603 
+  551D0E04 160414C6 6A200445 2B637B42 8ACE98F0 C18CD30A 625F4F30 0D06092A 
+  864886F7 0D010104 05000381 8100D33D CFC6656F C30DDD7E FDF6E565 87CA39EE 
+  D20363E1 C583E0C0 9EAB6074 6A068E56 3D03E291 8CA67BE2 70747BE7 43704066 
+  A4D1F310 D257A6B8 DE87A600 244E662C 98D9ADAA 93D555AA C47EE9DC 49621652 
+  4FEEB717 E8CC4AB0 CD352A96 80C61740 9702775E 6D2318B5 C4139D98 E3E5F75F 
+  3C96E9B2 305A7E1D 70073709 3EA1
+  quit
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+! 
+!
+!
+!
+interface FastEthernet0/1
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/2
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/3
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/4
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/5
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/6
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/7
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/8
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/9
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/10
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/11
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/12
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/13
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/14
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/15
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/16
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/17
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/18
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/19
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/20
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/21
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/22
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/23
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/24
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/25
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/26
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/27
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/28
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/29
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/30
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/31
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/32
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/33
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/34
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/35
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/36
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/37
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/38
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/39
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/40
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/41
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/42
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/43
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/44
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/45
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/46
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/47
+ switchport mode dynamic desirable
+!
+interface FastEthernet0/48
+ switchport access vlan 100
+ switchport mode access
+!
+interface GigabitEthernet0/1
+ switchport mode dynamic desirable
+!
+interface GigabitEthernet0/2
+ switchport mode dynamic desirable
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan100
+ ip address 192.168.88.53 255.255.255.0
+!
+ip default-gateway 192.168.88.1
+ip classless
+ip http server
+ip http secure-server
+!
+!
+!
+control-plane
+!
+!
+line con 0
+line vty 0 4
+ login local
+ transport input all
+line vty 5 15
+ login
+!
+end
