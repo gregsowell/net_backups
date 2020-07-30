@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 5709 bytes
+Current configuration : 5778 bytes
 !
 version 12.2
 no service pad
@@ -12,6 +12,7 @@ hostname Swi2
 !
 !
 username admin privilege 15 password 0 lab
+username backup privilege 15 secret 5 $1$o1b0$GnotYaQ5j9tlqzRJi1WnL1
 no aaa new-model
 ip subnet-zero
 ip domain-name gregsowell.com
