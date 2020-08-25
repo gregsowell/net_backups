@@ -12,7 +12,7 @@ hostname Swi2
 !
 !
 username admin privilege 15 password 0 lab
-username backup privilege 15 secret 5 $1$o1b0$GnotYaQ5j9tlqzRJi1WnL1
+username backup privilege 15 secret 5 $1$aFqn$GI/.zAfB6XGY16vtPQOz/0
 no aaa new-model
 ip subnet-zero
 ip domain-name gregsowell.com
@@ -223,9 +223,9 @@ interface Vlan1
  shutdown
 !
 interface Vlan100
- ip address 192.168.88.52 255.255.255.0
+ ip address 192.168.52.52 255.255.255.0
 !
-ip default-gateway 192.168.88.1
+ip default-gateway 192.168.52.1
 ip classless
 ip http server
 ip http secure-server

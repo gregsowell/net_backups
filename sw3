@@ -216,9 +216,9 @@ interface Vlan1
  shutdown
 !
 interface Vlan100
- ip address 192.168.88.53 255.255.255.0
+ ip address 192.168.52.53 255.255.255.0
 !
-ip default-gateway 192.168.88.1
+ip default-gateway 192.168.52.1
 ip classless
 ip http server
 ip http secure-server
