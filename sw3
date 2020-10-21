@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 5625 bytes
+Current configuration : 5766 bytes
 !
 version 12.2
 no service pad
@@ -224,6 +224,10 @@ ip http server
 ip http secure-server
 !
 !
+snmp-server community MyROCommunity RO
+snmp-server community MyRWCommunity RW
+snmp-server location site3
+snmp-server contact Greg Sowell SSA
 !
 control-plane
 !

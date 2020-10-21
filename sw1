@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 4408 bytes
+Current configuration : 4480 bytes
 !
 version 12.2
 no service pad
@@ -13,7 +13,6 @@ hostname Swi1
 enable secret 5 $1$Vz67$wo2kG9xRf7Lg.tKpSA6qe0
 !
 username admin privilege 15 password 0 lab
-username backup privilege 15 secret 5 $1$65hS$77CJN7/F4NiZmg2cC4ELA1
 no aaa new-model
 ip subnet-zero
 ip domain-name whatever.com
@@ -167,6 +166,10 @@ ip http server
 ip http secure-server
 !
 !
+snmp-server community MyROCommunity RO
+snmp-server community MyRWCommunity RW
+snmp-server location site1
+snmp-server contact Greg Sowell SSA
 !
 control-plane
 !
